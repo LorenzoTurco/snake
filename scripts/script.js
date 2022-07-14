@@ -42,7 +42,7 @@ const restart = () => {
     x: Math.floor(Math.random() * 30 + 1) * tile,
     y: Math.floor(Math.random() * 30 + 1) * tile,
   };
-  let highscore = 0;
+  highscore = 0;
   snake = [];
   snake[0] = {
     x: 256,
@@ -57,15 +57,15 @@ const restart = () => {
 const increaseSpeed = () => {
   clearInterval(game);
   if (currentSpeed > 30) {
-    currentSpeed = currentSpeed - 26;
+    currentSpeed = currentSpeed - 20;
   }
   game = setInterval(startGame, currentSpeed);
 };
 
 const decreaseSpeed = () => {
   clearInterval(game);
-  if (currentSpeed < 200) {
-    currentSpeed = currentSpeed + 50;
+  if (currentSpeed < 260) {
+    currentSpeed = currentSpeed + 20;
   }
   game = setInterval(startGame, currentSpeed);
 };
