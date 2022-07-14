@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+header .title {
+  font-family: "Press Start 2P", cursive;
+}
+header .score-text {
+  display: inline;
+  font-family: "Press Start 2P", cursive;
+}
+header .score-text__number {
+  font-family: "Press Start 2P", cursive;
+}/*# sourceMappingURL=styles.css.map */

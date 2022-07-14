@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 body{
 
     display: flex;
@@ -6,11 +7,25 @@ body{
     flex-direction: column;
 }
 
-.topscore-container{
-
-    display:inline;
+header{
+.title{
+    font-family: 'Press Start 2P', cursive;
 }
-.topscore-container__topscore{
+
+.score-text{
 
     display:inline;
+    font-family: 'Press Start 2P', cursive;
+
+
+}
+
+.score-text__number{
+
+    font-family: 'Press Start 2P', cursive;
+
+}
+
+
+
 }

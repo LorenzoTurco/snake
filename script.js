@@ -1,7 +1,7 @@
 /////////////////////GLOBAL VARIABLES///////////////////////
 
 let canvas = document.getElementById("snake").getContext("2d");
-let score = document.querySelector(".topscore-container__topscore");
+let score = document.querySelector(".score-text__number");
 
 let tile = 16; //px per tile
 let direction = "down";
@@ -79,7 +79,7 @@ const updateIfFruitFound = (snakeX, snakeY) => {
 
 const drawArea = () => {
   // draw area where snake can move
-  canvas.fillStyle = "black";
+  canvas.fillStyle = "tomato";
   canvas.fillRect(0, 0, 32 * tile, 32 * tile);
   //creates a rectangle (x, y, width, height)
   //creates a rectangle from position 0 , 0 of our 512 x 512 canvas

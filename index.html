@@ -10,13 +10,20 @@
   </head>
 
   <body>
-    <h1>Snake</h1>
+    <header>
+      <h1 class="title">Snake</h1>
+
+      <h3 class="score-text" style="display: inline">
+        SCORE:
+        <h3 class="score-text__number" style="display: inline">0</h3>
+      </h3>
+    </header>
     <canvas id="snake" width="512" height="512"></canvas>
 
-    <div class="topscore-container">
-      <h3 style="display: inline">SCORE:</h3>
-      <h3 class="topscore-container__topscore" style="display: inline"></h3>
-    </div>
+    <!--<div class="topscore-container">
+      <h3 class="text" style="display: inline">SCORE:</h3>
+      <h3 class="topscore-container__topscore" style="display: inline">0</h3>
+    </div>-->
   </body>
 </html>
 <script src="./script.js"></script>
