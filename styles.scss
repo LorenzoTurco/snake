@@ -27,14 +27,45 @@ header{
 }
 
 }
+.button-container{
 
-
-.restart{
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.5rem;
+    display: flex;
     margin-top:2rem;
+    width: 50%;
+    justify-content: space-around;
+
+    .speed-container{
+
+        display: flex;
+        flex-direction: column;
+        gap:1rem;
+
+.button-container__increase-speed{
+    font-family: 'Press Start 2P', cursive;
     border: none;
     background-color: white;
+    font-size: 1rem;
+}
+
+.button-container__decrease-speed{
+    font-family: 'Press Start 2P', cursive;
+    border: none;
+    background-color: white;
+    font-size: 1rem;
+}
+
+    }
+
+
+.button-container__restart{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    border: none;
+    background-color: white;
+    
+
+}
+
 
 
 }

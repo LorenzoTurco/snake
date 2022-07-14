@@ -2,7 +2,14 @@
 
 let canvas = document.getElementById("snake").getContext("2d");
 let score = document.querySelector(".score-text__number");
-let restartButton = document.querySelector(".restart");
+let restartButton = document.querySelector(".button-container__restart");
+let increaseSpeedButton = document.querySelector(
+  ".button-container__increase-speed"
+);
+let speedButton = document.querySelector(".button-container__increase-speed");
+let decreaseSpeedButton = document.querySelector(
+  ".button-container__decrease-speed"
+);
 
 let tile = 16; //px per tile
 let direction = "down";
@@ -18,7 +25,7 @@ snake[0] = {
   y: 0,
 };
 
-let gameOver = false;
+let currentSpeed = 100;
 
 /////////////////////FUNCTIONS///////////////////////
 
@@ -29,6 +36,8 @@ const resizeCanvas = () => {
 
 const restart = () => {
   //reset
+  direction = "down";
+
   food = {
     x: Math.floor(Math.random() * 30 + 1) * tile,
     y: Math.floor(Math.random() * 30 + 1) * tile,
@@ -41,10 +50,24 @@ const restart = () => {
   };
 
   score.innerHTML = highscore;
+  clearInterval(game);
+  game = setInterval(startGame, 100);
 };
 
 const increaseSpeed = () => {
-  setInterval(startGame, 100);
+  clearInterval(game);
+  if (currentSpeed > 30) {
+    currentSpeed = currentSpeed - 26;
+  }
+  game = setInterval(startGame, currentSpeed);
+};
+
+const decreaseSpeed = () => {
+  clearInterval(game);
+  if (currentSpeed < 200) {
+    currentSpeed = currentSpeed + 50;
+  }
+  game = setInterval(startGame, currentSpeed);
 };
 
 const update = (event) => {
@@ -154,3 +177,5 @@ let game = setInterval(startGame, 100); //call startFame every 100 milliseconds 
 //add button to begin game rather than start immediately
 document.addEventListener("keydown", update);
 restartButton.addEventListener("click", restart);
+increaseSpeedButton.addEventListener("click", increaseSpeed);
+decreaseSpeedButton.addEventListener("click", decreaseSpeed);
