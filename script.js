@@ -2,6 +2,7 @@
 
 let canvas = document.getElementById("snake").getContext("2d");
 let score = document.querySelector(".score-text__number");
+let restartButton = document.querySelector(".restart");
 
 let tile = 16; //px per tile
 let direction = "down";
@@ -17,16 +18,41 @@ snake[0] = {
   y: 0,
 };
 
-document.addEventListener("keydown", update);
+let gameOver = false;
 
 /////////////////////FUNCTIONS///////////////////////
 
-function update(event) {
+const resizeCanvas = () => {
+  let height = window.innerHeight;
+  let width = window.innerHeight;
+};
+
+const restart = () => {
+  //reset
+  food = {
+    x: Math.floor(Math.random() * 30 + 1) * tile,
+    y: Math.floor(Math.random() * 30 + 1) * tile,
+  };
+  let highscore = 0;
+  snake = [];
+  snake[0] = {
+    x: 256,
+    y: 0,
+  };
+
+  score.innerHTML = highscore;
+};
+
+const increaseSpeed = () => {
+  setInterval(startGame, 100);
+};
+
+const update = (event) => {
   if (event.keyCode == 37 && direction != "right") direction = "left";
   if (event.keyCode == 38 && direction != "down") direction = "up";
   if (event.keyCode == 39 && direction != "left") direction = "right";
   if (event.keyCode == 40 && direction != "up") direction = "down";
-}
+};
 
 const checkIfCollide = () => {
   for (i = 1; i < snake.length; i++) {
@@ -109,6 +135,9 @@ const startGame = () => {
   if (checkIfCollide()) {
     clearInterval(game);
     alert(`Game Over!  Highscore: ${highscore}`);
+
+    restart();
+    setInterval(startGame, 100);
   }
 
   // create canvas items
@@ -123,3 +152,5 @@ const startGame = () => {
 };
 let game = setInterval(startGame, 100); //call startFame every 100 milliseconds until clearInterval() is called
 //add button to begin game rather than start immediately
+document.addEventListener("keydown", update);
+restartButton.addEventListener("click", restart);
