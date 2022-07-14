@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@use "./_variables.scss" as *;
+
+
 body{
 
     display: flex;
@@ -9,20 +11,20 @@ body{
 
 header{
 .title{
-    font-family: 'Press Start 2P', cursive;
+    font-family: $mainFont;
 }
 
 .score-text{
 
     display:inline;
-    font-family: 'Press Start 2P', cursive;
+    font-family: $mainFont;
 
 
 }
 
 .score-text__number{
 
-    font-family: 'Press Start 2P', cursive;
+    font-family: $mainFont;
 
 }
 
@@ -41,14 +43,14 @@ header{
         gap:1rem;
 
 .button-container__increase-speed{
-    font-family: 'Press Start 2P', cursive;
+    font-family: $mainFont;
     border: none;
     background-color: white;
     font-size: 1rem;
 }
 
 .button-container__decrease-speed{
-    font-family: 'Press Start 2P', cursive;
+    font-family: $mainFont;
     border: none;
     background-color: white;
     font-size: 1rem;
@@ -58,7 +60,7 @@ header{
 
 
 .button-container__restart{
-    font-family: 'Press Start 2P', cursive;
+    font-family: $mainFont;
     font-size: 1.5rem;
     border: none;
     background-color: white;
