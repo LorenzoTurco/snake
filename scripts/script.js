@@ -41,7 +41,7 @@ const checkDirection = () => {
     Math.abs(touchstartX - touchendX) < 20 &&
     Math.abs(touchstartY - touchendY) < 20
   )
-    return; //return if finger movement is too small
+    return direction; //return if finger movement is too small
 
   if (Math.abs(touchstartX - touchendX) > Math.abs(touchstartY - touchendY)) {
     //if finger movement is greater sideways check for X
