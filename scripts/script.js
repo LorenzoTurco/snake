@@ -1,17 +1,17 @@
 /////////////////////GLOBAL VARIABLES///////////////////////
 
-let canvas = document.getElementById("snake").getContext("2d");
-let score = document.querySelector(".score-text__number");
-let restartButton = document.querySelector(".button-container__restart");
-let increaseSpeedButton = document.querySelector(
+const canvas = document.getElementById("canvas").getContext("2d");
+const score = document.querySelector(".score-text__number");
+const restartButton = document.querySelector(".button-container__restart");
+const increaseSpeedButton = document.querySelector(
   ".button-container__increase-speed"
 );
-let speedButton = document.querySelector(".button-container__increase-speed");
-let decreaseSpeedButton = document.querySelector(
+const speedButton = document.querySelector(".button-container__increase-speed");
+const decreaseSpeedButton = document.querySelector(
   ".button-container__decrease-speed"
 );
 
-let tile = 16; //px per tile
+const tile = 16; //px per tile
 let direction = "down";
 let food = {
   x: Math.floor(Math.random() * 30 + 1) * tile,
@@ -28,11 +28,6 @@ snake[0] = {
 let currentSpeed = 100;
 
 /////////////////////FUNCTIONS///////////////////////
-
-const resizeCanvas = () => {
-  let height = window.innerHeight;
-  let width = window.innerHeight;
-};
 
 const restart = () => {
   //reset
