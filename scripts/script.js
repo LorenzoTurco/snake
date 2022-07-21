@@ -179,7 +179,8 @@ const drawSnake = () => {
 };
 
 const drawFood = () => {
-  canvasDrawing.fillStyle = "red";
+  canvasDrawing.fillStyle = Math.random() < 0.5 ? "purple" : "blue"; //glow
+
   canvasDrawing.fillRect(food.x, food.y, tile, tile);
 };
 
