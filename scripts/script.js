@@ -1,6 +1,7 @@
 /////////////////////GLOBAL VARIABLES///////////////////////
 
-const canvas = document.getElementById("canvas").getContext("2d");
+const canvasDrawing = document.getElementById("canvas").getContext("2d");
+const canvas = document.querySelector("canvas");
 const score = document.querySelector(".score-text__number");
 const restartButton = document.querySelector(".button-container__restart");
 const increaseSpeedButton = document.querySelector(
@@ -27,7 +28,44 @@ snake[0] = {
 
 let currentSpeed = 100;
 
+// touchscreen finger cooordinates
+let touchstartX = 0;
+let touchendX = 0;
+let touchstartY = 0;
+let touchendY = 0;
+
 /////////////////////FUNCTIONS///////////////////////
+
+const checkDirection = () => {
+  if (
+    Math.abs(touchstartX - touchendX) < 20 &&
+    Math.abs(touchstartY - touchendY) < 20
+  )
+    return; //return if finger movement is too small
+
+  if (Math.abs(touchstartX - touchendX) > Math.abs(touchstartY - touchendY)) {
+    console.log("inside");
+    //if finger movement is greater sideways
+    if (touchstartX < touchendX && direction != "left") {
+      direction = "right";
+      return;
+    }
+
+    if (touchendX < touchstartX && direction != "right") {
+      direction = "left";
+      return;
+    }
+  }
+
+  if (touchstartY < touchendY && direction != "up") {
+    direction = "down";
+    return;
+  }
+  if (touchendY < touchstartY && direction != "down") {
+    direction = "up";
+    return;
+  }
+};
 
 const restart = () => {
   //reset
@@ -123,8 +161,8 @@ const updateIfFruitFound = (snakeX, snakeY) => {
 
 const drawArea = () => {
   // draw area where snake can move
-  canvas.fillStyle = "tomato";
-  canvas.fillRect(0, 0, 32 * tile, 32 * tile);
+  canvasDrawing.fillStyle = "tomato";
+  canvasDrawing.fillRect(0, 0, 32 * tile, 32 * tile);
   //creates a rectangle (x, y, width, height)
   //creates a rectangle from position 0 , 0 of our 512 x 512 canvas
   //give rectangle a width of 512 and height of 512
@@ -134,15 +172,15 @@ const drawSnake = () => {
   // draw snake on the map
   for (i = 0; i < snake.length; i++) {
     // draw every tile of  the snake
-    canvas.fillStyle = "green";
-    canvas.fillRect(snake[i].x, snake[i].y, tile, tile);
+    canvasDrawing.fillStyle = "green";
+    canvasDrawing.fillRect(snake[i].x, snake[i].y, tile, tile);
     //draw rectangle at coordinates snake[i].x and snake[i].y with height tile and width tile
   }
 };
 
 const drawFood = () => {
-  canvas.fillStyle = "red";
-  canvas.fillRect(food.x, food.y, tile, tile);
+  canvasDrawing.fillStyle = "red";
+  canvasDrawing.fillRect(food.x, food.y, tile, tile);
 };
 
 ////////////////////GAME/////////////////////////
@@ -174,3 +212,18 @@ document.addEventListener("keydown", update);
 restartButton.addEventListener("click", restart);
 increaseSpeedButton.addEventListener("click", increaseSpeed);
 decreaseSpeedButton.addEventListener("click", decreaseSpeed);
+
+canvas.addEventListener("touchstart", (e) => {
+  console.log(e);
+  touchstartX = e.changedTouches[0].screenX;
+  touchstartY = e.changedTouches[0].screenY;
+});
+
+canvas.addEventListener("touchend", (e) => {
+  console.log(e);
+
+  touchendX = e.changedTouches[0].screenX;
+  touchendY = e.changedTouches[0].screenY;
+
+  checkDirection();
+});
