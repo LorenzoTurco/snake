@@ -44,26 +44,21 @@ const checkDirection = () => {
     return; //return if finger movement is too small
 
   if (Math.abs(touchstartX - touchendX) > Math.abs(touchstartY - touchendY)) {
-    console.log("inside");
-    //if finger movement is greater sideways
+    //if finger movement is greater sideways check for X
+
     if (touchstartX < touchendX && direction != "left") {
-      direction = "right";
-      return;
+      return "right";
     }
 
     if (touchendX < touchstartX && direction != "right") {
-      direction = "left";
-      return;
+      return "left";
     }
   }
-
   if (touchstartY < touchendY && direction != "up") {
-    direction = "down";
-    return;
+    return "down";
   }
   if (touchendY < touchstartY && direction != "down") {
-    direction = "up";
-    return;
+    return "up";
   }
 };
 
@@ -111,7 +106,7 @@ const update = (event) => {
 };
 
 const checkIfCollide = () => {
-  for (i = 1; i < snake.length; i++) {
+  for (let i = 1; i < snake.length; i++) {
     // check if collided
     if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
       //check if x and y coordinates of the snake head touch the coordinates of the snake body
@@ -122,9 +117,9 @@ const checkIfCollide = () => {
 };
 
 const checkIfEndOfCanvas = () => {
-  if (snake[0].x == 30 * tile && direction == "right") snake[0].x = 0;
+  if (snake[0].x == 31 * tile && direction == "right") snake[0].x = 0;
   if (snake[0].x == 0 && direction == "left") snake[0].x = 32 * tile;
-  if (snake[0].y == 30 * tile && direction == "down") snake[0].y = 0;
+  if (snake[0].y == 31 * tile && direction == "down") snake[0].y = 0;
   if (snake[0].y == 0 && direction == "up") snake[0].y = 32 * tile;
 };
 
@@ -170,7 +165,7 @@ const drawArea = () => {
 
 const drawSnake = () => {
   // draw snake on the map
-  for (i = 0; i < snake.length; i++) {
+  for (let i = 0; i < snake.length; i++) {
     // draw every tile of  the snake
     canvasDrawing.fillStyle = "green";
     canvasDrawing.fillRect(snake[i].x, snake[i].y, tile, tile);
@@ -221,10 +216,8 @@ canvas.addEventListener("touchstart", (e) => {
 });
 
 canvas.addEventListener("touchend", (e) => {
-  console.log(e);
-
   touchendX = e.changedTouches[0].screenX;
   touchendY = e.changedTouches[0].screenY;
 
-  checkDirection();
+  direction = checkDirection();
 });
